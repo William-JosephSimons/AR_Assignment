@@ -1,0 +1,28 @@
+{
+  "pois": [
+    {
+      "name": "Library",
+      "description": "Library with 24/7 access",
+      "hours": "Always Open",
+      "position": { "x": 5, "y": 0, "z": 10 }
+    },
+    {
+      "name": "Toilet Block A",
+      "description": "Nearby restroom facilities",
+      "hours": "Always Open",
+      "position": { "x": -3, "y": 0, "z": 8 }
+    },
+    {
+      "name": "Cafe",
+      "description": "New deals weekly!",
+      "hours": "08:00 - 16:00",
+      "position": { "x": 2, "y": 0, "z": 15 }
+    },
+    {
+      "name": "Reception",
+      "description": "Where you begin your journey",
+      "hours": "09:00 - 17:00",
+      "position": { "x": 0, "y": 0, "z": 2 }
+    }
+  ]
+}
