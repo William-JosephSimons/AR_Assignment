@@ -16,7 +16,7 @@ public class PoiDataWrapper {
 
 public class PoiManager : MonoBehaviour {
     public GameObject poiPrefab;
-    private List<GameObject> spawned = new List<GameObject>();
+    private readonly List<GameObject> spawned = new();
 
     void Start() {
         // Load JSON text from Resources

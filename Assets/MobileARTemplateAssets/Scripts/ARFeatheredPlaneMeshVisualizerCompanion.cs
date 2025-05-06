@@ -42,7 +42,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets
         Material m_PlaneMaterial;
 
 #pragma warning disable CS0618 // Type or member is obsolete -- affordance system to be replaced in a future XRI version
-        readonly FloatTweenableVariable m_AlphaTweenableVariable = new FloatTweenableVariable();
+        readonly FloatTweenableVariable m_AlphaTweenableVariable = new();
 #pragma warning restore CS0618
 
         /// <summary>

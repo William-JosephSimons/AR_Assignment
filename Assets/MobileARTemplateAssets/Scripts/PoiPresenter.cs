@@ -9,13 +9,13 @@ public class PoiPresenter : MonoBehaviour {
 
     private Transform cam;
     private PoiData data;
-    private float maxDistance = 10f;
+    private readonly float maxDistance = 10f;
     // Angle threshold (in degrees) within which the POI becomes visible
-    private float angleThreshold = 22f;
+    private readonly float angleThreshold = 15f;
 
     void Awake() {
         cam = Camera.main.transform;
-        if (infoCanvas != null) infoCanvas.gameObject.SetActive(false);
+        infoCanvas?.gameObject.SetActive(false);
     }
 
     public void Initialize(PoiData poiData) {

@@ -95,7 +95,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("List of Goals/Steps to complete as part of the user onboarding.")]
     [SerializeField]
-    List<Step> m_StepList = new List<Step>();
+    List<Step> m_StepList = new();
 
     /// <summary>
     /// List of Goals/Steps to complete as part of the user onboarding.
@@ -275,10 +275,7 @@ public class GoalManager : MonoBehaviour
     /// </summary>
     public void StartCoaching()
     {
-        if (m_OnboardingGoals != null)
-        {
-            m_OnboardingGoals.Clear();
-        }
+        m_OnboardingGoals?.Clear();
 
         m_OnboardingGoals = new Queue<Goal>();
 

@@ -185,7 +185,7 @@ public class ARTemplateMenuManager : MonoBehaviour
     }
 
     [SerializeField]
-    XRInputValueReader<Vector2> m_TapStartPositionInput = new XRInputValueReader<Vector2>("Tap Start Position");
+    XRInputValueReader<Vector2> m_TapStartPositionInput = new("Tap Start Position");
 
     /// <summary>
     /// Input to use for the screen tap start position.
@@ -198,7 +198,7 @@ public class ARTemplateMenuManager : MonoBehaviour
     }
 
     [SerializeField]
-    XRInputValueReader<Vector2> m_DragCurrentPositionInput = new XRInputValueReader<Vector2>("Drag Current Position");
+    XRInputValueReader<Vector2> m_DragCurrentPositionInput = new("Drag Current Position");
 
     /// <summary>
     /// Input to use for the screen tap start position.
@@ -216,7 +216,7 @@ public class ARTemplateMenuManager : MonoBehaviour
     bool m_InitializingDebugMenu;
     Vector2 m_ObjectButtonOffset = Vector2.zero;
     Vector2 m_ObjectMenuOffset = Vector2.zero;
-    readonly List<ARFeatheredPlaneMeshVisualizerCompanion> featheredPlaneMeshVisualizerCompanions = new List<ARFeatheredPlaneMeshVisualizerCompanion>();
+    readonly List<ARFeatheredPlaneMeshVisualizerCompanion> featheredPlaneMeshVisualizerCompanions = new();
 
     /// <summary>
     /// See <see cref="MonoBehaviour"/>.
