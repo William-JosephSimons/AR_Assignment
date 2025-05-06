@@ -10,13 +10,13 @@
       "name": "Toilet Block A",
       "description": "Nearby restroom facilities",
       "hours": "Always Open",
-      "position": { "x": -3, "y": 0, "z": 8 }
+      "position": { "x": -3, "y": 0, "z": -15 }
     },
     {
       "name": "Cafe",
       "description": "New deals weekly!",
       "hours": "08:00 - 16:00",
-      "position": { "x": 2, "y": 0, "z": 15 }
+      "position": { "x": 5, "y": 0, "z": -2 }
     },
     {
       "name": "Reception",
