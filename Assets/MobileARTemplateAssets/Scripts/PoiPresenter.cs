@@ -12,12 +12,10 @@ public class PoiPresenter : MonoBehaviour {
     private PoiData data;
     private Bounds bounds;
 
-    [Header("Visibility Settings")]
     public float maxDistance = 10f;
     // Angle threshold (in degrees) within which the POI becomes visible
     public float angleThreshold = 18f;
 
-    [Header("Perimeter Positioning")]
     public float margin = 0.2f;         // meters out from asset edge
     public float smoothSpeed = 5f;      // interpolation speed
 

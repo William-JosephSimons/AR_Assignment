@@ -1,28 +1,64 @@
 {
   "pois": [
     {
-      "name": "Library",
-      "description": "Library with 24/7 access",
-      "hours": "Always Open",
-      "position": { "x": 5, "y": 0, "z": 10 }
+      "name": "Admissions & Welcome Center",
+      "description": "Your university journey starts here!",
+      "hours": "Mon-Fri: 8:00 AM - 5:00 PM",
+      "position": { "x": 0, "y": 0, "z": -2 }
     },
     {
-      "name": "Toilet Block A",
-      "description": "Nearby restroom facilities",
-      "hours": "Always Open",
-      "position": { "x": -3, "y": 0, "z": -15 }
+      "name": "Student Guild",
+      "description": "Grab a coffee, meet friends, or attend events.",
+      "hours": "Mon-Sat: 7:00 AM - 11:00 PM, Sun: 9:00 AM - 9:00 PM",
+      "position": { "x": 0, "y": 0, "z": 2 }
     },
     {
       "name": "Cafe",
-      "description": "New deals weekly!",
-      "hours": "08:00 - 16:00",
-      "position": { "x": 5, "y": 0, "z": -2 }
+      "description": "Grab a snack and a hot drink.",
+      "hours": "Mon-Fri: 9:00 AM - 6:00 PM, Sat: 10:00 AM - 4:00 PM",
+      "position": { "x": 2, "y": 0, "z": 2 }
     },
     {
-      "name": "Reception",
-      "description": "Where you begin your journey",
-      "hours": "09:00 - 17:00",
-      "position": { "x": 0, "y": 0, "z": 2 }
+      "name": "Quiet Study Pavilion",
+      "description": "A peaceful zone for focused learning.",
+      "hours": "Mon-Sun: 6:00 AM - 2:00 AM",
+      "position": { "x": 2, "y": 0, "z": 4 }
+    },
+    {
+      "name": "The Innovation Lab",
+      "description": "Where brilliant ideas come to life. Access by appointment.",
+      "hours": "Mon-Fri: 9:00 AM - 7:00 PM (Bookings required)",
+      "position": { "x": 2, "y": 0, "z": 6 }
+    },
+    {
+      "name": "Central Library Stacks",
+      "description": "Vast collections and research resources.",
+      "hours": "Mon-Thu: 8:00 AM - 12:00 AM, Fri: 8:00 AM - 10:00 PM, Sat-Sun: 10:00 AM - 10:00 PM",
+      "position": { "x": 0, "y": 0, "z": 6 }
+    },
+    {
+      "name": "The Science Wing",
+      "description": "Labs and lecture halls for scientific discovery.",
+      "hours": "Mon-Fri: 7:30 AM - 8:00 PM (Access restricted after hours)",
+      "position": { "x": -2, "y": 0, "z": 6 }
+    },
+    {
+      "name": "Student Services & Wellbeing Center",
+      "description": "Support for academic success and personal health.",
+      "hours": "Mon-Fri: 8:30 AM - 5:30 PM",
+      "position": { "x": -2, "y": 0, "z": 4 }
+    },
+    {
+      "name": "The Lecture Theatre Complex",
+      "description": "Main halls for large classes and guest speakers.",
+      "hours": "Event Dependent (Check schedule)",
+      "position": { "x": -2, "y": 0, "z": 2 }
+    },
+    {
+      "name": "Graduation Plaza & Amphitheatre",
+      "description": "Celebrate your achievements here!",
+      "hours": "Open Access (Events may restrict times)",
+      "position": { "x": 0, "y": 0, "z": 8 }
     }
   ]
 }
