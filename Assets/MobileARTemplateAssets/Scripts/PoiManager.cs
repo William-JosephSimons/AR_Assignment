@@ -6,7 +6,7 @@ public class PoiData {
     public string name;
     public string description;
     public string hours;
-    public Vector3 position;
+    public Vector3 position; // Phone relative positions from JSON
 }
 
 [System.Serializable]
@@ -19,25 +19,38 @@ public class PoiManager : MonoBehaviour {
     private readonly List<GameObject> spawned = new();
 
     void Start() {
+        if (poiPrefab == null) {
+             Debug.LogError("PoiManager: Poi Prefab is not assigned in the Inspector!");
+             return;
+        }
+
         // Load JSON text from Resources
         TextAsset textAsset = Resources.Load<TextAsset>("pois");
         if (textAsset == null) {
-            Debug.LogError("Failed to load pois.json");
+            Debug.LogError("PoiManager: Failed to load pois.json from Resources.");
             return;
         }
         // Parse JSON
         PoiDataWrapper wrapper = JsonUtility.FromJson<PoiDataWrapper>(textAsset.text);
         if (wrapper == null || wrapper.pois == null) {
-            Debug.LogError("Failed to parse pois.json");
+            Debug.LogError("PoiManager: Failed to parse pois.json");
             return;
         }
 
+        Debug.Log($"PoiManager: Spawning {wrapper.pois.Length} POIs at absolute world positions.");
+
         foreach (var poi in wrapper.pois) {
+            // Instantiate at the position defined in the JSON
             var go = Instantiate(poiPrefab, poi.position, Quaternion.identity);
             go.name = poi.name;
+
             // Populate fields
             var presenter = go.GetComponent<PoiPresenter>();
-            presenter.Initialize(poi);
+            if (presenter != null) {
+                presenter.Initialize(poi);
+            } else {
+                Debug.LogError($"PoiManager: PoiPrefab is missing PoiPresenter component on POI '{poi.name}'");
+            }
 
             spawned.Add(go);
         }

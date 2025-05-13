@@ -25,6 +25,12 @@
       "position": { "x": 2, "y": 0, "z": 4 }
     },
     {
+      "name": "A Huge Impassable Obstacle",
+      "description": "You literally just can't pass here",
+      "hours": "Temporarily in the way",
+      "position": { "x": 2.5, "y": 0, "z": 4 }
+    },
+    {
       "name": "The Innovation Lab",
       "description": "Where brilliant ideas come to life. Access by appointment.",
       "hours": "Mon-Fri: 9:00 AM - 7:00 PM (Bookings required)",
