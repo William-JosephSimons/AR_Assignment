@@ -16,55 +16,67 @@
       "name": "Cafe",
       "description": "Grab a snack and a hot drink.",
       "hours": "Mon-Fri: 9:00 AM - 6:00 PM, Sat: 10:00 AM - 4:00 PM",
-      "position": { "x": 2, "y": 0, "z": 2 }
+      "position": { "x": 1, "y": 0, "z": 2 }
     },
     {
       "name": "Quiet Study Pavilion",
       "description": "A peaceful zone for focused learning.",
       "hours": "Mon-Sun: 6:00 AM - 2:00 AM",
-      "position": { "x": 2, "y": 0, "z": 4 }
+      "position": { "x": 1, "y": 0, "z": 3 }
     },
     {
       "name": "A Huge Impassable Obstacle",
       "description": "You literally just can't pass here",
       "hours": "Temporarily in the way",
-      "position": { "x": 2.5, "y": 0, "z": 4 }
+      "position": { "x": 1.5, "y": 0, "z": 3 }
     },
     {
       "name": "The Innovation Lab",
       "description": "Where brilliant ideas come to life. Access by appointment.",
       "hours": "Mon-Fri: 9:00 AM - 7:00 PM (Bookings required)",
-      "position": { "x": 2, "y": 0, "z": 6 }
+      "position": { "x": 1, "y": 0, "z": 4 }
     },
     {
       "name": "Central Library Stacks",
       "description": "Vast collections and research resources.",
       "hours": "Mon-Thu: 8:00 AM - 12:00 AM, Fri: 8:00 AM - 10:00 PM, Sat-Sun: 10:00 AM - 10:00 PM",
-      "position": { "x": 0, "y": 0, "z": 6 }
+      "position": { "x": 0, "y": 0, "z": 4 }
     },
     {
       "name": "The Science Wing",
       "description": "Labs and lecture halls for scientific discovery.",
       "hours": "Mon-Fri: 7:30 AM - 8:00 PM (Access restricted after hours)",
-      "position": { "x": -2, "y": 0, "z": 6 }
+      "position": { "x": -1, "y": 0, "z": 4 }
     },
     {
       "name": "Student Services & Wellbeing Center",
       "description": "Support for academic success and personal health.",
       "hours": "Mon-Fri: 8:30 AM - 5:30 PM",
-      "position": { "x": -2, "y": 0, "z": 4 }
+      "position": { "x": -1, "y": 0, "z": 2 }
     },
     {
       "name": "The Lecture Theatre Complex",
       "description": "Main halls for large classes and guest speakers.",
       "hours": "Event Dependent (Check schedule)",
-      "position": { "x": -2, "y": 0, "z": 2 }
+      "position": { "x": -2, "y": 0, "z": 3 }
     },
     {
       "name": "Graduation Plaza & Amphitheatre",
       "description": "Celebrate your achievements here!",
       "hours": "Open Access (Events may restrict times)",
-      "position": { "x": 0, "y": 0, "z": 8 }
+      "position": { "x": 0, "y": 0, "z": 6 }
+    },
+    {
+      "name": "Campus History Walk Start",
+      "description": "Begin your journey through the university's past.",
+      "hours": "Open Access",
+      "position": { "x": -2, "y": 0, "z": 2 }
+    },
+    {
+      "name": "North Precinct Green Space",
+      "description": "Relax or gather in this open northern area.",
+      "hours": "Dawn till Dusk",
+      "position": { "x": -2, "y": 0, "z": 4 }
     }
   ]
 }

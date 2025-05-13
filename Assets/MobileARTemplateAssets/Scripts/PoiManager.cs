@@ -37,7 +37,7 @@ public class PoiManager : MonoBehaviour {
             return;
         }
 
-        Debug.Log($"PoiManager: Spawning {wrapper.pois.Length} POIs at absolute world positions.");
+        Debug.Log($"PoiManager: Spawning {wrapper.pois.Length} POIs in positions.");
 
         foreach (var poi in wrapper.pois) {
             // Instantiate at the position defined in the JSON

@@ -12,7 +12,7 @@ public class PoiPresenter : MonoBehaviour {
     private PoiData data;
     private Bounds bounds;
 
-    public float maxDistance = 10f;
+    public float maxDistance = 5f;
     // Angle threshold (in degrees) within which the POI becomes visible
     public float angleThreshold = 18f;
 
