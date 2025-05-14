@@ -18,7 +18,7 @@ public class RouteManager : MonoBehaviour
         new(-3, -1, 1f),         // 3. Front-left corner
         new(-3, -1, 5f),         // 4. Back-left corner
         new(0, -1, 5f),          // 5. Back Middle
-        new(0, -1, 5.9f)         // 6. End in front of last POI
+        new(0, -1, 7.9f)         // 6. End in front of last POI
     };
 
     private readonly List<GameObject> spawnedWaypoints = new();

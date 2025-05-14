@@ -28,7 +28,7 @@
       "name": "A Huge Impassable Obstacle",
       "description": "You literally just can't pass here",
       "hours": "Temporarily in the way",
-      "position": { "x": 1.5, "y": 0, "z": 3 }
+      "position": { "x": 2, "y": 0, "z": 3 }
     },
     {
       "name": "The Innovation Lab",
@@ -64,7 +64,7 @@
       "name": "Graduation Plaza & Amphitheatre",
       "description": "Celebrate your achievements here!",
       "hours": "Open Access (Events may restrict times)",
-      "position": { "x": 0, "y": 0, "z": 6 }
+      "position": { "x": 0, "y": 0, "z": 8 }
     },
     {
       "name": "Campus History Walk Start",
