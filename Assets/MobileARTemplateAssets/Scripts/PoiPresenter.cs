@@ -8,7 +8,7 @@ public class PoiPresenter : MonoBehaviour {
     public TextMeshProUGUI hoursText;
 
 
- private Transform cam;
+    private Transform cam;
     private PoiData data;
     private Bounds bounds;
 

@@ -28,20 +28,26 @@ public class RouteManager : MonoBehaviour
         // Initial Setup & Validation
         if (pathLineRenderer == null) {
             pathLineRenderer = GetComponent<LineRenderer>();
-             Debug.LogWarning("RouteManager: Path Line Renderer was not assigned, attempting to get it from GameObject.", this);
+            Debug.LogWarning("RouteManager: Path Line Renderer was not assigned, attempting to get it from GameObject.", this);
         }
-         if (pathLineRenderer == null) {
-             Debug.LogError("RouteManager: Path Line Renderer component not found or assigned! Cannot draw path.", this);
-         } else {
-             pathLineRenderer.enabled = false; // Start disabled
-             pathLineRenderer.positionCount = 0;
-         }
+        if (pathLineRenderer == null)
+        {
+            Debug.LogError("RouteManager: Path Line Renderer component not found or assigned! Cannot draw path.", this);
+        } else {
+            pathLineRenderer.enabled = false; // Start disabled
+            pathLineRenderer.positionCount = 0;
+        }
 
-        if (mapCanvas == null) Debug.LogError("RouteManager: Map Canvas is not assigned!", this);
-        if (goButton == null) Debug.LogError("RouteManager: Go Button is not assigned!", this);
-        else goButton.onClick.AddListener(OnGoPressed);
+        if (mapCanvas == null) {
+            Debug.LogError("RouteManager: Map Canvas is not assigned!", this);
+        }
+        if (goButton == null) {
+            Debug.LogError("RouteManager: Go Button is not assigned!", this);
+        } else goButton.onClick.AddListener(OnGoPressed);
 
-        if (waypointPrefab == null) Debug.LogError("RouteManager: Waypoint Prefab is not assigned! Cannot spawn waypoints.", this);
+        if (waypointPrefab == null) {
+            Debug.LogError("RouteManager: Waypoint Prefab is not assigned! Cannot spawn waypoints.", this);
+        }
 
         // Spawn Path immediately
         SpawnPath();
@@ -55,7 +61,7 @@ public class RouteManager : MonoBehaviour
         if (mapCanvas != null) {
             mapCanvas.enabled = show;
         }
-        // Show/hide the button along with the map
+        // Show the button along with the map
         goButton?.gameObject.SetActive(show);
     }
 
@@ -68,13 +74,12 @@ public class RouteManager : MonoBehaviour
 
     void SpawnPath()
     {
-         // Check if prerequisites are met
-         if (pathLineRenderer == null || waypointPrefab == null) {
-             Debug.LogError("RouteManager: Cannot spawn path. Line Renderer or Waypoint Prefab is missing.");
-             return;
-         }
-        if (waypointWorldPositions == null || waypointWorldPositions.Length < 2)
-        {
+        // Check if prerequisites are met
+        if (pathLineRenderer == null || waypointPrefab == null) {
+            Debug.LogError("RouteManager: Cannot spawn path. Line Renderer or Waypoint Prefab is missing.");
+            return;
+        }
+        if (waypointWorldPositions == null || waypointWorldPositions.Length < 2) {
             Debug.LogWarning("RouteManager: Not enough waypoints defined to draw a path.");
             return;
         }
@@ -83,11 +88,10 @@ public class RouteManager : MonoBehaviour
 
         Debug.Log($"RouteManager: Spawning {currentWaypoints.Count} waypoints in positions.");
 
-        for (int i = 0; i < currentWaypoints.Count; i++)
-        {
+        for (int i = 0; i < currentWaypoints.Count; i++) {
             Vector3 worldPos = currentWaypoints[i];
 
-            // Instantiate the waypoint visual marker at the positions
+            // Instantiate the waypoint markers at the positions
             GameObject waypointGO = Instantiate(waypointPrefab, worldPos, Quaternion.identity);
             waypointGO.name = $"Waypoint_{i}";
             spawnedWaypoints.Add(waypointGO);
