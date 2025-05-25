@@ -4,6 +4,7 @@ using UnityEngine.XR.ARSubsystems;
 using System.Collections;
 using System;
 using System.Threading.Tasks;
+using Unity.XR.CoreUtils;
 
 public class ARFloorplanAnchorSystem : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
             // Move floorplanMarkerOffset from marker, regardless of marker rotation
             Vector3 newPosition = trackedImage.transform.position +
                                   trackedImage.transform.rotation * floorplanMarkerOffset;
-            Quaternion newRotation = trackedImage.transform.rotation * Quaternion.Euler(90, 0, 0);
+            Quaternion newRotation = /* Quaternion.Euler(0, trackedImage.transform.eulerAngles.y, 0); ; */  trackedImage.transform.rotation * Quaternion.Euler(90, 0, 0);
 
             if (debugLog) Debug.Log("Refining floorplan using image marker.");
 
@@ -66,6 +67,10 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
             if (!floorplanInstance)
             {
                 floorplanInstance = Instantiate(floorplanPrefab, refinedPose.position, refinedPose.rotation);
+            }
+            else
+            {
+                floorplanInstance.transform.SetWorldPose(refinedPose);
             }
 
             var result = await anchorManager.TryAddAnchorAsync(refinedPose);
