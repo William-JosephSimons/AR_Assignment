@@ -524,16 +524,9 @@ MonoBehaviour:
     type: 3}
   anchorManager: {fileID: 2512387470422636671}
   imageManager: {fileID: 2512387470422636670}
-  referenceLatitude: -34.82379972222222
-  referenceLongitude: 138.6818227777778
   markerName: EntryMarker
-  floorplanMarkerOffset: {x: 0.18, y: 0.97, z: -1.47}
-  placementHeight: 0
+  floorplanMarkerOffset: {x: 0, y: 0, z: -1.47}
   debugLog: 1
-  axisArrowPrefab: {fileID: 1356673632646340502, guid: 5da385130e836ab4aac0c829ba02c038,
-    type: 3}
-  axisLength: 0.2
-  tempMaterial: {fileID: 0}
 --- !u!4 &1497325324
 Transform:
   m_ObjectHideFlags: 0
@@ -860,6 +853,8 @@ GameObject:
   - component: {fileID: 2512387470422636642}
   - component: {fileID: 2512387470422636670}
   - component: {fileID: 2512387470422636671}
+  - component: {fileID: 2512387470422636672}
+  - component: {fileID: 2512387470422636673}
   m_Layer: 0
   m_Name: XR Origin (AR Rig)
   m_TagString: Untagged
@@ -902,6 +897,40 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AnchorPrefab: {fileID: 0}
+--- !u!114 &2512387470422636672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512387470422636669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlanePrefab: {fileID: 8251838193683462046, guid: ef7d400305fd9f94caf4df88c39f0903,
+    type: 3}
+  m_DetectionMode: 1
+--- !u!114 &2512387470422636673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512387470422636669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_RaycastPrefab: {fileID: 0}
 --- !u!4 &2512387470860572925
 Transform:
   m_ObjectHideFlags: 0

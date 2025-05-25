@@ -59,11 +59,12 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
             // Move floorplanMarkerOffset from marker, regardless of marker rotation
             Vector3 newPosition = trackedImage.transform.position +
                                   trackedImage.transform.rotation * floorplanMarkerOffset;
-            Quaternion newRotation = /* Quaternion.Euler(0, trackedImage.transform.eulerAngles.y, 0); ; */  trackedImage.transform.rotation * Quaternion.Euler(90, 0, 0);
+            Quaternion newRotation = trackedImage.transform.rotation * Quaternion.Euler(90, 0, 0);
 
             if (debugLog) Debug.Log("Refining floorplan using image marker.");
 
             Pose refinedPose = new(newPosition, newRotation);
+            refinedPose = FlattenPose(refinedPose);
             if (!floorplanInstance)
             {
                 floorplanInstance = Instantiate(floorplanPrefab, refinedPose.position, refinedPose.rotation);
@@ -81,6 +82,27 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
                 currentAnchor = result.value;
             }
         }
+    }
+
+    public static Pose FlattenPose(Pose pose)
+    {
+        // Step 1: Get forward direction from the pose's rotation
+        Vector3 forward = pose.rotation * Vector3.forward;
+
+        // Step 2: Remove vertical tilt
+        forward.y = 0;
+
+        // Step 3: Handle near-zero vectors (e.g., pointing straight up/down)
+        if (forward.sqrMagnitude < 0.001f)
+            forward = Vector3.forward;
+
+        forward.Normalize();
+
+        // Step 4: Build upright rotation
+        Quaternion uprightRotation = Quaternion.LookRotation(forward, Vector3.up);
+
+        // Step 5: Return flattened pose
+        return new Pose(pose.position, uprightRotation);
     }
 
 }
