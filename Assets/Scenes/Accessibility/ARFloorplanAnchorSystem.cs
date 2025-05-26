@@ -3,6 +3,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using System.Threading.Tasks;
 using Unity.XR.CoreUtils;
+using System.Linq;
 
 public class ARFloorplanAnchorSystem : MonoBehaviour
 {
@@ -150,6 +151,19 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
 
         // Step 5: Return flattened pose
         return new Pose(pose.position, uprightRotation);
+    }
+
+    public void Update()
+    {
+        if (floorplanInstance)
+        {
+            string[] names = {  "Access", "Normal", "WellLit" };
+            GameObject[] paths = names.Select(name => GameObject.FindGameObjectWithTag(name))
+                .Where(go => go != null)
+                .ToArray();
+            Debug.Log(paths);
+            SceneData.changePathColours(paths, true, 5.7f, 5.8f);
+        }
     }
 
 }
