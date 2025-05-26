@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using System.Collections;
-using System;
 using System.Threading.Tasks;
 using Unity.XR.CoreUtils;
 
@@ -12,6 +10,8 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
     public GameObject floorplanPrefab;
     public ARAnchorManager anchorManager;
     public ARTrackedImageManager imageManager;
+    public ARPlaneManager planeManager;
+    public ARRaycastManager arRaycastManager;
 
     [Header("Marker Adjustment")]
     public string markerName = "EntryMarker"; // Name of image marker
@@ -19,21 +19,77 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
 
     [Header("Options")]
     public bool debugLog = true;
+    public float maxPersonHeight = 2.5f;
 
     private GameObject floorplanInstance;
     private ARAnchor currentAnchor;
+    private ARPlane lowestFloorPlane;
 
     void OnEnable()
     {
-        imageManager.trackablesChanged.AddListener(OnChanged);
+        imageManager.trackablesChanged.AddListener(OnImagesChanged);
+        planeManager.trackablesChanged.AddListener(OnPlanesChanged);
     }
 
     void OnDisable()
     {
-        imageManager.trackablesChanged.RemoveListener(OnChanged);
+        imageManager.trackablesChanged.RemoveListener(OnImagesChanged);
     }
 
-    async void OnChanged(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
+    async void OnPlanesChanged(ARTrackablesChangedEventArgs<ARPlane> args)
+    {
+        foreach (var plane in args.added)
+        {
+            await HandlePlaneAddedOrUpdated(plane);
+        }
+        foreach (var plane in args.updated)
+        {
+            await HandlePlaneAddedOrUpdated(plane);
+        }
+        foreach (var planePair in args.removed)
+        {
+            if (lowestFloorPlane != null && lowestFloorPlane.trackableId == planePair.Key)
+            {
+                lowestFloorPlane = null;
+            }
+        }
+    }
+
+    async Task HandlePlaneAddedOrUpdated(ARPlane plane)
+    {
+        if (plane.alignment == PlaneAlignment.HorizontalUp)
+        {
+            if (debugLog) Debug.Log("Plane detected at: " + plane.center);
+
+            if (lowestFloorPlane == null || (plane.transform.position.y > -maxPersonHeight && plane.transform.position.y < 0 && plane.transform.position.y < lowestFloorPlane.transform.position.y))
+            {
+                if (debugLog) Debug.Log("Lowest set at: " + plane.center);
+                lowestFloorPlane = plane;
+            }
+            if (floorplanInstance)
+            {
+                // put the floorplan according to the plane
+                Pose pose = FlattenPose(new(floorplanInstance.transform.position, floorplanInstance.transform.rotation));
+                pose.position.y = lowestFloorPlane.transform.position.y;
+                floorplanInstance.transform.SetWorldPose(pose);
+                await reAnchor(pose, true);
+            }
+        }
+    }
+
+    async Task reAnchor(Pose pose, bool worldPositionStays = false)
+    {
+        if (debugLog) Debug.Log($"reAchoring {pose}");
+        var result = await anchorManager.TryAddAnchorAsync(pose);
+        if (result.status.IsSuccess())
+        {
+            if (currentAnchor != null) Destroy(currentAnchor.gameObject);
+            floorplanInstance.transform.SetParent(result.value.transform, worldPositionStays);
+            currentAnchor = result.value;
+        }
+    }
+
+    async void OnImagesChanged(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
     {
         foreach (var newImage in eventArgs.added)
         {
@@ -55,32 +111,23 @@ public class ARFloorplanAnchorSystem : MonoBehaviour
     {
         if (trackedImage.referenceImage.name == markerName && trackedImage.trackingState == TrackingState.Tracking)
         {
+            if (debugLog) Debug.Log($"Image {trackedImage.referenceImage.name} detected at {trackedImage.transform.position} with rotation {trackedImage.transform.eulerAngles}.");
 
-            // Move floorplanMarkerOffset from marker, regardless of marker rotation
+            // Use Floorplan Marker Offset
             Vector3 newPosition = trackedImage.transform.position +
                                   trackedImage.transform.rotation * floorplanMarkerOffset;
             Quaternion newRotation = trackedImage.transform.rotation * Quaternion.Euler(90, 0, 0);
-
-            if (debugLog) Debug.Log("Refining floorplan using image marker.");
-
-            Pose refinedPose = new(newPosition, newRotation);
-            refinedPose = FlattenPose(refinedPose);
+            Pose pose = FlattenPose(new(newPosition, newRotation));
+            if (lowestFloorPlane)
+            {
+                pose.position.y = lowestFloorPlane.transform.position.y;
+            }
             if (!floorplanInstance)
             {
-                floorplanInstance = Instantiate(floorplanPrefab, refinedPose.position, refinedPose.rotation);
+                floorplanInstance = Instantiate(floorplanPrefab, pose.position, pose.rotation);
             }
-            else
-            {
-                floorplanInstance.transform.SetWorldPose(refinedPose);
-            }
-
-            var result = await anchorManager.TryAddAnchorAsync(refinedPose);
-            if (result.status.IsSuccess())
-            {
-                if (currentAnchor != null) Destroy(currentAnchor.gameObject);
-                floorplanInstance.transform.SetParent(result.value.transform, true);
-                currentAnchor = result.value;
-            }
+            floorplanInstance.transform.SetWorldPose(pose);
+            await reAnchor(pose, true);
         }
     }
 
