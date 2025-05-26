@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PoiMarkers.unity
     guid: 213cea3eb0b9f5e448fa3ad18d401d69
   - enabled: 1
+    path: Assets/Scenes/PatrickMenu.unity
+    guid: 18583aa01741e484e989c7113fd60881
+  - enabled: 1
     path: Assets/Scenes/Accessibility.unity
     guid: 50af61e4f22e7ff4386bf7164dab51d6
   - enabled: 0
